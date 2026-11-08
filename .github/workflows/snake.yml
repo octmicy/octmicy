@@ -13,13 +13,18 @@ jobs:
     permissions:
       contents: write
     steps:
+      - uses: actions/checkout@v4
+
       - name: Generate contribution snake
         uses: Platane/snk@v3
         with:
           github_user_name: octmicy
           outputs: |
-            dist/github-snake.svg?color_snake=%23ffaec5&color_dots=%23efe6d6,%23d8e8f0,%23bfe3f0,%23a9c9e0,%238a72b8
-            dist/github-snake-dark.svg?color_snake=%23ffc2d4&color_dots=%233a3450,%234a4266,%235d5488,%238a72b8,%23b9a7e0
+            dist/github-snake.svg
+            dist/github-snake-dark.svg
+
+      - name: Apply pastel palette
+        run: python3 .github/scripts/fix-snake.py dist
 
       - name: Push to output branch
         uses: peaceiris/actions-gh-pages@v4
