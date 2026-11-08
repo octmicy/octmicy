@@ -24,7 +24,7 @@ jobs:
             dist/github-snake-dark.svg
 
       - name: Apply pastel palette
-        run: python3 .github/scripts/fix-snake.py dist
+        run: sudo python3 .github/scripts/fix-snake.py dist
 
       - name: Push to output branch
         uses: peaceiris/actions-gh-pages@v4
